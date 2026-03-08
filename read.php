@@ -30,4 +30,32 @@ if (isset($_GET["id"])) {
     exit;
 }
 
+if (isset($_GET["name"])) {
+
+    $result = [];
+
+    foreach ($users as $user) {
+        if (stripos($user["name"], $_GET["name"]) !== false) {
+            $result[] = $user;
+        }
+    }
+
+    echo json_encode($result);
+    exit;
+}
+
+if (isset($_GET["email"])) {
+
+    $result = [];
+
+    foreach ($users as $user) {
+        if ($user["email"] == $_GET["email"]) {
+            $result[] = $user;
+        }
+    }
+
+    echo json_encode($result);
+    exit;
+}
+
 echo json_encode($users);
