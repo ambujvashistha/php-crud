@@ -17,6 +17,17 @@ foreach ($lines as $line) {
     $users[] = json_decode($line, true);
 }
 
-echo json_encode($users);
+if (isset($_GET["id"])) {
 
-?>
+    foreach ($users as $user) {
+        if ($user["id"] == $_GET["id"]) {
+            echo json_encode($user);
+            exit;
+        }
+    }
+
+    echo json_encode(["message" => "User not found"]);
+    exit;
+}
+
+echo json_encode($users);
